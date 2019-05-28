@@ -28,8 +28,6 @@ export class BasisForm extends Component {
         })
       }
 
-      
-
       this.props.nextStep();
   }
 

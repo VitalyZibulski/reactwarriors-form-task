@@ -14,7 +14,7 @@ export class ContactsForm extends Component {
   }
 
   getOptionsItems = items => {
-    console.log('items', items )
+    console.log('items11111', items)
     return items.map(item => (
       <option key={item.id} value={item.id}>{item.name}</option>
     ));
@@ -23,7 +23,17 @@ export class ContactsForm extends Component {
   render() {
     console.log(this.props)
     const {countries, cities} = this.props
+    const cities1 = Object.values(cities);
+
+    console.log(cities1)
+    
+
     const {country, email, mobile, city} = this.props.values;
+    const filtered = cities1.filter((item) => item.country === country)
+    console.log(filtered)
+
+    console.log(country)
+
     const {handleChange} = this.props;
     return (
         <div>
@@ -70,7 +80,7 @@ export class ContactsForm extends Component {
             value={city}
             onChange = {handleChange}
             >
-              {/* {this.getOptionsItems(cities.filter((item) => item.country === this.props.country))} */}
+              {this.getOptionsItems(filtered)}
             </select>
           </div>
             <div className="d-flex justify-content-center">
