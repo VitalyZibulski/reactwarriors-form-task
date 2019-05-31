@@ -14,26 +14,18 @@ export class ContactsForm extends Component {
   }
 
   getOptionsItems = items => {
-    console.log('items11111', items)
     return items.map(item => (
       <option key={item.id} value={item.id}>{item.name}</option>
     ));
   }
 
   render() {
-    console.log(this.props)
     const {countries, cities} = this.props
     const cities1 = Object.values(cities);
 
-    console.log(cities1)
-    
-
     const {country, email, mobile, city} = this.props.values;
     const filtered = cities1.filter((item) => item.country === country)
-    console.log(filtered)
-
-    console.log(country)
-
+  
     const {handleChange} = this.props;
     return (
         <div>

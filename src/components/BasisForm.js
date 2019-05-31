@@ -13,10 +13,6 @@ export class BasisForm extends Component {
         errors.lastName = "Must be 5 characters or more"
       }
 
-      // if(this.state.password !== this.state.repeatPassword){
-      //   errors.repeatPassword = "Must be equal password"
-      // }
-
       if(Object.keys(errors).length > 0){
         
         this.setState({

@@ -11,17 +11,19 @@ export default class App extends React.Component {
     super();
 
     this.state = {
-      step: 1, 
-      firstName:"",
-      lastName:"",
-      password:"",
-      repeatPassword:"",
-      email:"",
-      mobile: "",
-      country: "1",
-      city: "1",
-      avatar:"",
-      gender:"male",
+      step: 1,
+      values:{
+        firstName:"",
+        lastName:"",
+        password:"",
+        repeatPassword:"",
+        email:"",
+        mobile: "",
+        country: "1",
+        city: "1",
+        avatar:"",
+        gender:"male",
+      }, 
       errors:{
         firstName: false,
         lastName: false,
@@ -32,17 +34,15 @@ export default class App extends React.Component {
   }
 
   nextStep = () => {
-    const {step} = this.state;
-    this.setState({
-      step: step + 1
-    })
+    this.setState(state => ({
+      step: state.step + 1
+    }))
   }
 
   prevStep = () => {
-    const {step} = this.state;
-    this.setState({
-      step: step - 1
-    })
+    this.setState(state => ({
+      step: state.step - 1
+    }))
   }
 
   handleChange = (event) => {
@@ -53,44 +53,39 @@ export default class App extends React.Component {
 
   render() {
     const {step} = this.state;
-    const {
-      firstName, lastName, password, 
-      repeatPassword, email, mobile, country, avatar, gender } = this.state;
+    const { values:{firstName, lastName, password, 
+      repeatPassword, email, mobile, country, avatar, gender}
+       } = this.state;
 
-    const values = {
-      firstName, lastName, password, 
-      repeatPassword, email, mobile, country, avatar, gender }
-    
     const { errors } = this.state
-
-      switch(step) {
-        case 1:
-            return <BasisForm 
-                    nextStep={this.nextStep} 
-                    values={values}
-                    handleChange = {this.handleChange}
-                    errors = {errors}
-                    />
-        case 2:
-            return <ContactsForm 
-                    nextStep={this.nextStep}
-                    prevStep={this.prevStep}
-                    values={values}
-                    handleChange = {this.handleChange}
-                    countries = {countries}
-                    cities = {cities}
-                    />
-        case 3:
-            return <AvatarForm 
-                    nextStep={this.nextStep}
-                    prevStep={this.prevStep}
-                    values={values}
-                    handleChange = {this.handleChange}
-                    />
-        case 4:
-            return <Success />
-        }
-
     
+    return(
+      <React.Fragment>
+        { step === 1 && <BasisForm 
+            nextStep={this.nextStep} 
+            values={values}
+            handleChange = {this.handleChange}
+            errors = {errors}
+          />
+        }
+        { step === 2 && <ContactsForm 
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            values={values}
+            handleChange = {this.handleChange}
+            countries = {countries}
+            cities = {cities}
+          />
+        }
+        { step === 3 && <AvatarForm 
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            values={values}
+            handleChange = {this.handleChange}
+          />
+        }
+        { step === 4 && <Success /> }
+      </React.Fragment>
+    )   
   }
 }
