@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 export class BasisForm extends Component {
 
   handleNext = (e) => {
-      e.preventDefault();
       const errors = {};
       if(this.props.errors.firstName.length < 5){
         errors.firstName = "Must be 5 characters or more"
@@ -29,12 +28,7 @@ export class BasisForm extends Component {
 
   render() {
     console.log('props', this.props)
-    const {avatar, country, email, firstName, lastName, mobile, password, repeatPassword, gender} = this.props.values;
-    
-    const {handleChange} = this.props;
-
-    const {errors} = this.props;
-
+    const {values:{avatar, country, email, firstName, lastName, mobile, password, repeatPassword, gender}, handleChange, errors}  = this.props;
 
     return (
         <div className="form-container card">

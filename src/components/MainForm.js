@@ -19,8 +19,8 @@ export default class App extends React.Component {
         repeatPassword:"",
         email:"",
         mobile: "",
-        country: "1",
-        city: "1",
+        country: "",
+        city: "",
         avatar:"",
         gender:"male",
       }, 
@@ -46,24 +46,20 @@ export default class App extends React.Component {
   }
 
   handleChange = (event) => {
+    console.log(event.target.value, event.target.name)
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
   render() {
-    const {step} = this.state;
-    const { values:{firstName, lastName, password, 
-      repeatPassword, email, mobile, country, avatar, gender}
-       } = this.state;
-
-    const { errors } = this.state
+    const {step, errors} = this.state;
     
     return(
       <React.Fragment>
         { step === 1 && <BasisForm 
             nextStep={this.nextStep} 
-            values={values}
+            values={this.state.values}
             handleChange = {this.handleChange}
             errors = {errors}
           />
@@ -71,7 +67,7 @@ export default class App extends React.Component {
         { step === 2 && <ContactsForm 
             nextStep={this.nextStep}
             prevStep={this.prevStep}
-            values={values}
+            values={this.state.values}
             handleChange = {this.handleChange}
             countries = {countries}
             cities = {cities}
@@ -80,7 +76,7 @@ export default class App extends React.Component {
         { step === 3 && <AvatarForm 
             nextStep={this.nextStep}
             prevStep={this.prevStep}
-            values={values}
+            values={this.state.values}
             handleChange = {this.handleChange}
           />
         }

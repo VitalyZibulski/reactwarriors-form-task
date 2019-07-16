@@ -2,17 +2,6 @@ import React, { Component } from 'react'
 
 export class ContactsForm extends Component {
 
-
-  handlePrevious = (e) => {
-    e.preventDefault();
-    this.props.prevStep();
-  }
-
-  handleNext = (e) => {
-    e.preventDefault();
-    this.props.nextStep();
-  }
-
   getOptionsItems = items => {
     return items.map(item => (
       <option key={item.id} value={item.id}>{item.name}</option>
@@ -76,9 +65,9 @@ export class ContactsForm extends Component {
             </select>
           </div>
             <div className="d-flex justify-content-center">
-            <button type="button" className="btn btn-light mr-4" onClick={this.handlePrevious}>Previous</button>
-            <button type="button" className="btn btn-secondary" onClick={this.handleNext}>Next</button>
-        </div>
+            <button type="button" className="btn btn-light mr-4" onClick={this.props.prevStep}>Previous</button>
+            <button type="button" className="btn btn-secondary" onClick={this.props.nextStep}>Next</button>
+        </div>  
         </form>
       </div>
       </div>

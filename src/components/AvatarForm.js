@@ -1,16 +1,7 @@
 import React, { Component } from 'react'
 
 export class AvatarForm extends Component {
-  handlePrevious = (e) => {
-    e.preventDefault();
-    this.props.prevStep();
-  }
-
-  handleNext = (e) => {
-    e.preventDefault();
-    this.props.nextStep();
-  }
-
+  
   onChangeAvatar = event => {
     const reader = new FileReader();
     reader.onload = event => {
@@ -18,11 +9,13 @@ export class AvatarForm extends Component {
         avatar: event.target.result
       })
     }
-    
+    console.log(event.target.files[0])
     reader.readAsDataURL(event.target.files[0])
+    
   }
 
   render() {
+
     return (
         <div>
         <form className="form card-body">
@@ -35,8 +28,8 @@ export class AvatarForm extends Component {
               onChange={this.onChangeAvatar}/>
           </div>
           <div className="d-flex justify-content-center">
-            <button type="button" className="btn btn-light mr-4" onClick={this.handlePrevious}>Previous</button>
-            <button type="button" className="btn btn-secondary" onClick={this.handleNext}>Next</button>
+            <button type="button" className="btn btn-light mr-4" onClick={this.props.prevStep}>Previous</button>
+            <button type="button" className="btn btn-secondary" onClick={this.props.nextStep}>Next</button>
           </div>
         </form>
         </div>
