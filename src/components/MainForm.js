@@ -19,7 +19,7 @@ export default class App extends React.Component {
         repeatPassword:"",
         email:"",
         mobile: "",
-        country: "",
+        country: "1",
         city: "",
         avatar:"",
         gender:"male",

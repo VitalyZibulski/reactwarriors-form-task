@@ -9,11 +9,11 @@ export class ContactsForm extends Component {
   }
 
   render() {
+    
     const {countries, cities} = this.props
     const cities1 = Object.values(cities);
-
     const {country, email, mobile, city} = this.props.values;
-    const filtered = cities1.filter((item) => item.country === country)
+    const filtered = cities1.filter((item) => item.country === Number(country))
   
     const {handleChange} = this.props;
     return (

@@ -27,7 +27,7 @@ export class BasisForm extends Component {
   }
 
   render() {
-    console.log('props', this.props)
+    
     const {values:{avatar, country, email, firstName, lastName, mobile, password, repeatPassword, gender}, handleChange, errors}  = this.props;
 
     return (
