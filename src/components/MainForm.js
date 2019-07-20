@@ -7,10 +7,8 @@ import countries from '../data/countries'
 import cities from '../data/cities'
   
 export default class App extends React.Component {
-  constructor() {
-    super();
 
-    this.state = {
+    state = {
       step: 1,
       values:{
         firstName:"",
@@ -31,7 +29,7 @@ export default class App extends React.Component {
         repeatPassword: false
       }
     }
-  }
+  
 
   nextStep = () => {
     this.setState(state => ({
@@ -59,14 +57,19 @@ export default class App extends React.Component {
   handleChangeAvatar = (event) => {
     const reader = new FileReader();
     reader.onload = event => {
-      this.setState((state, props) => ({
-       values: {
-         avatar:event.target.result
-       }
+      this.setState(state => ({
+        values: {
+          ...state.values,
+          avatar: event.target.result
+        }
       }))
     }
     
     reader.readAsDataURL(event.target.files[0])
+  }
+
+  sentForm = () => {
+    console.log(this.state)
   }
 
   render() {
@@ -95,6 +98,7 @@ export default class App extends React.Component {
             prevStep={this.prevStep}
             values={this.state.values}
             handleChangeAvatar = {this.handleChangeAvatar}
+            sentForm = {this.sentForm}
           />
         }
         { step === 4 && <Success /> }

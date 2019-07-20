@@ -18,7 +18,7 @@ export class AvatarForm extends Component {
           </div>
           <div className="d-flex justify-content-center">
             <button type="button" className="btn btn-light mr-4" onClick={this.props.prevStep}>Previous</button>
-            <button type="button" className="btn btn-secondary" onClick={this.props.nextStep}>Next</button>
+            <button type="button" className="btn btn-secondary" onClick={this.props.sentForm}>Next</button>
           </div>
         </form>
         </div>

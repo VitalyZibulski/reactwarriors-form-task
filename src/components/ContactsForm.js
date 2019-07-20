@@ -56,8 +56,8 @@ export class ContactsForm extends Component {
           </div>
           <div className="form-group">
             <label htmlFor="city">Cities</label>
-            <select className="form-control" id="country"
-            name="country"
+            <select className="form-control" id="city"
+            name="city"
             value={city}
             onChange = {handleChange}
             >
