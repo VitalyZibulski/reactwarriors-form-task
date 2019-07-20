@@ -21,7 +21,7 @@ export default class App extends React.Component {
         mobile: "",
         country: "",
         city: "",
-        avatar:"",
+        avatar:"1",
         gender:"male",
       }, 
       errors:{
@@ -46,10 +46,22 @@ export default class App extends React.Component {
   }
 
   handleChange = (event) => {
-    console.log(event.target.value, event.target.name)
     this.setState({
       [event.target.name]: event.target.value
     })
+  }
+
+  handleChangeAvatar = (event) => {
+    const reader = new FileReader();
+    reader.onload = event => {
+      this.setState((state, props) => ({
+       values: {
+         avatar:event.target.result
+       }
+      }))
+    }
+    console.log(event.target.files[0])
+    reader.readAsDataURL(event.target.files[0])
   }
 
   render() {
@@ -77,7 +89,7 @@ export default class App extends React.Component {
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             values={this.state.values}
-            handleChange = {this.handleChange}
+            handleChangeAvatar = {this.handleChangeAvatar}
           />
         }
         { step === 4 && <Success /> }

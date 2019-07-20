@@ -1,31 +1,21 @@
 import React, { Component } from 'react'
 
 export class AvatarForm extends Component {
-  
-  onChangeAvatar = event => {
-    const reader = new FileReader();
-    reader.onload = event => {
-      this.setState({
-        avatar: event.target.result
-      })
-    }
-    console.log(event.target.files[0])
-    reader.readAsDataURL(event.target.files[0])
-    
-  }
 
   render() {
+    console.log(this.props)
 
     return (
         <div>
         <form className="form card-body">
+        <img src={this.props.values.avatar} style={{width:'250px', height:'250px'}}  alt="" />
           <div className="form-group">
               <label htmlFor="avatar">Avatar</label>
               <input type="file" 
               className="form-control-file" 
               id="avatar"
               name="avatar" 
-              onChange={this.onChangeAvatar}/>
+              onChange={this.props.handleChangeAvatar}/>
           </div>
           <div className="d-flex justify-content-center">
             <button type="button" className="btn btn-light mr-4" onClick={this.props.prevStep}>Previous</button>
