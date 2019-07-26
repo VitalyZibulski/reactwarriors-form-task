@@ -4,13 +4,15 @@ export class BasisForm extends Component {
 
   handleNext = (e) => {
       const errors = {};
-      if(this.props.errors.firstName.length < 5){
+      if(this.props.values.firstName.length < 5){
         errors.firstName = "Must be 5 characters or more"
       }
 
-      if(this.props.errors.lastName.length < 5){
+      if(this.props.values.lastName.length < 5){
         errors.lastName = "Must be 5 characters or more"
       }
+
+      console.log(Object.keys(errors).length)
 
       if(Object.keys(errors).length > 0){
         
@@ -27,9 +29,9 @@ export class BasisForm extends Component {
   }
 
   render() {
-    
-    const {values:{avatar, country, email, firstName, lastName, mobile, password, repeatPassword, gender}, handleChange, errors}  = this.props;
-
+    console.log(this.props)
+    const {values:{firstName, lastName, password, gender}, handleChange, errors}  = this.props;
+    console.log(errors.firstName)
     return (
         <div className="form-container card">
             <form className="form card-body">
@@ -44,7 +46,7 @@ export class BasisForm extends Component {
                 onChange = {handleChange}
                 name="firstName"
               />
-              {this.props.errors.firstName ? <div className="invalid-feedback">{this.props.errors.firstName}</div> : null}
+              {errors.firstName ? <div className="invalid-feedback">{errors.firstName}</div> : null}
             </div>
             <div className="form-group">
               <label>LastName</label>
