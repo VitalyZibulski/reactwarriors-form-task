@@ -43,6 +43,10 @@ export default class App extends React.Component {
     }))
   }
 
+  sentForm = () => {
+    console.log(this.state)
+  }
+
   handleChange = event => {
     const name = event.target.name;
     const value = event.target.value;
@@ -54,7 +58,7 @@ export default class App extends React.Component {
     }));
   };
 
-  handleChangeAvatar = (event) => {
+  handleChangeAvatar = event => {
     const reader = new FileReader();
     reader.onload = event => {
       this.setState(state => ({
@@ -62,30 +66,67 @@ export default class App extends React.Component {
           ...state.values,
           avatar: event.target.result
         }
-      }))
-    }
-    
-    reader.readAsDataURL(event.target.files[0])
-  }
+      }));
+    };
 
-  sentForm = () => {
-    console.log(this.state)
-  }
+    reader.readAsDataURL(event.target.files[0]);
+  };
+
+  handleNext = (e) => {
+    const errors = {};
+    if(this.state.values.firstName.length < 5){
+      errors.firstName = "Must be 5 characters or more"
+    }
+
+    if(this.state.values.lastName.length < 5){
+      errors.lastName = "Must be 5 characters or more"
+    }
+
+    if(this.state.values.password.length < 6){
+      errors.password = "Must be 6 characters or more"
+    }
+
+    if(this.state.values.password !== this.state.values.repeatPassword){
+      errors.repeatPassword = "Must be equal password"
+    }
+
+    if(!this.state.values.gender){
+      errors.gender = "Choose gender"
+    }
+
+    if(!this.state.values.email){
+      errors.gender = "Choose gender"
+    }
+
+    if(Object.keys(errors).length > 0){
+      
+      this.setState({
+        errors: errors
+      })
+    } else {
+      this.setState({
+        errors:{}
+      });
+
+      this.nextStep();
+    }
+}
 
   render() {
-    const {step, errors} = this.state;
+    const {step, errors, values} = this.state;
     
     return(
       <React.Fragment>
         { step === 1 && <BasisForm 
-            nextStep={this.nextStep} 
-            values={this.state.values}
+            nextStep={this.handleNext} 
+            values={values}
             handleChange = {this.handleChange}
+            className="form-control-file" 
             errors = {errors}
           />
         }
         { step === 2 && <ContactsForm 
-            nextStep={this.nextStep}
+            nextStep={this.handleNext}
             prevStep={this.prevStep}
             values={this.state.values}
             handleChange = {this.handleChange}
@@ -94,7 +135,7 @@ export default class App extends React.Component {
           />
         }
         { step === 3 && <AvatarForm 
-            nextStep={this.nextStep}
+            nextStep={this.handleNext}
             prevStep={this.prevStep}
             values={this.state.values}
             handleChangeAvatar = {this.handleChangeAvatar}

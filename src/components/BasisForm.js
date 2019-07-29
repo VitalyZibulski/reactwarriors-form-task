@@ -2,36 +2,10 @@ import React, { Component } from 'react'
 
 export class BasisForm extends Component {
 
-  handleNext = (e) => {
-      const errors = {};
-      if(this.props.values.firstName.length < 5){
-        errors.firstName = "Must be 5 characters or more"
-      }
-
-      if(this.props.values.lastName.length < 5){
-        errors.lastName = "Must be 5 characters or more"
-      }
-
-      console.log(Object.keys(errors).length)
-
-      if(Object.keys(errors).length > 0){
-        
-        this.setState({
-          errors: errors
-        })
-      } else {
-        this.setState({
-          errors:{}
-        })
-      }
-
-      this.props.nextStep();
-  }
-
   render() {
-    console.log(this.props)
+    
     const {values:{firstName, lastName, password, gender}, handleChange, errors}  = this.props;
-    console.log(errors.firstName)
+    
     return (
         <div className="form-container card">
             <form className="form card-body">
@@ -59,6 +33,7 @@ export class BasisForm extends Component {
                 onChange = {handleChange}
                 name="lastName"
               />
+              {errors.lastName ? <div className="invalid-feedback">{errors.lastName}</div> : null}
             </div>
             <div className="form-group">
             <label>Password</label>
@@ -72,7 +47,7 @@ export class BasisForm extends Component {
                 name="password"
                 type="password"
               />
-            {this.props.errors.password ? <div className="invalid-feedback">{this.props.errors.password}</div> : null}
+            {errors.password ? <div className="invalid-feedback">{errors.password}</div> : null}
           </div>
           <div className="form-group">
             <label>Repeat password</label>
@@ -85,7 +60,7 @@ export class BasisForm extends Component {
               name="repeatPassword"
               type="password"
             />
-            {this.props.errors.repeatPassword ? <div className="invalid-feedback">{this.props.errors.repeatPassword}</div> : null}
+            {errors.repeatPassword ? <div className="invalid-feedback">{errors.repeatPassword}</div> : null}
           </div>
             <fieldset className="form-group">
             <div>Gender</div>
@@ -108,7 +83,7 @@ export class BasisForm extends Component {
             </fieldset>
             <div className="d-flex justify-content-center">
                 <button type="button" className="btn btn-light mr-4" disabled>Previous</button>
-                <button type="button" className="btn btn-secondary" onClick={this.handleNext}>Next</button>
+                <button type="button" className="btn btn-secondary" onClick={this.props.nextStep}>Next</button>
             </div>
         </form>
 

@@ -10,7 +10,7 @@ export class AvatarForm extends Component {
         <img src={this.props.values.avatar} style={{width:'250px', height:'250px'}}  alt="" />
           <div className="form-group">
               <label htmlFor="avatar">Avatar</label>
-              <input type="file" 
+              <input type="file"
               className="form-control-file" 
               id="avatar"
               name="avatar" 
