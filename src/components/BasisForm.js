@@ -4,7 +4,7 @@ export class BasisForm extends Component {
 
   render() {
     
-    const {values:{firstName, lastName, password, gender}, handleChange, errors}  = this.props;
+    const {values:{firstName, lastName, password, gender}, handleChange, handleNext, errors}  = this.props;
     
     return (
         <div className="form-container card">
@@ -83,7 +83,7 @@ export class BasisForm extends Component {
             </fieldset>
             <div className="d-flex justify-content-center">
                 <button type="button" className="btn btn-light mr-4" disabled>Previous</button>
-                <button type="button" className="btn btn-secondary" onClick={this.props.nextStep}>Next</button>
+                <button type="button" className="btn btn-secondary" onClick={handleNext}>Next</button>
             </div>
         </form>
 

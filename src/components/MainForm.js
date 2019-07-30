@@ -94,16 +94,13 @@ export default class App extends React.Component {
       errors.gender = "Choose gender"
     }
 
-    if(!this.state.values.email){
-      errors.gender = "Choose gender"
-    }
-
     if(Object.keys(errors).length > 0){
       
       this.setState({
         errors: errors
       })
     } else {
+      
       this.setState({
         errors:{}
       });
@@ -118,26 +115,25 @@ export default class App extends React.Component {
     return(
       <React.Fragment>
         { step === 1 && <BasisForm 
-            nextStep={this.handleNext} 
+            handleNext={this.handleNext} 
             values={values}
             handleChange = {this.handleChange}
-            className="form-control-file" 
             errors = {errors}
           />
         }
         { step === 2 && <ContactsForm 
-            nextStep={this.handleNext}
+            handleNext={this.handleNext}
             prevStep={this.prevStep}
-            values={this.state.values}
+            values={values}
             handleChange = {this.handleChange}
             countries = {countries}
             cities = {cities}
           />
         }
         { step === 3 && <AvatarForm 
-            nextStep={this.handleNext}
+            handleNext={this.handleNext}
             prevStep={this.prevStep}
-            values={this.state.values}
+            values={values}
             handleChangeAvatar = {this.handleChangeAvatar}
             sentForm = {this.sentForm}
           />
