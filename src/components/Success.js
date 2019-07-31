@@ -1,9 +1,10 @@
 import React from 'react'
 
-const Success = () => {
+const Success = ({sentForm}) => {
+  
   return (
     <div>
-      Form has been sent
+      <button onClick={sentForm}>Send</button>
     </div>
   )
 }

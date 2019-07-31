@@ -37,7 +37,8 @@ export default class App extends React.Component {
     }))
   }
 
-  sentForm = () => {
+  sentForm = (e) => {
+    e.preventDefault();
     console.log(this.state)
   }
 
@@ -174,11 +175,13 @@ export default class App extends React.Component {
             prevStep={this.prevStep}
             values={values}
             handleChangeAvatar = {this.handleChangeAvatar}
-            sentForm = {this.sentForm}
             errors = {errors}
           />
         }
-        { step === 4 && <Success /> }
+        { step === 4 && <Success 
+            sentForm = {this.sentForm}
+          />
+         }
       </React.Fragment>
     )   
   }
