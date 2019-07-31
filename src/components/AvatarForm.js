@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 export class AvatarForm extends Component {
 
   render() {
-
+    console.log(this.props)
+    const { errors, handleNext } = this.props;
     return (
         <div>
         <form className="form card-body">
@@ -16,9 +17,10 @@ export class AvatarForm extends Component {
               name="avatar" 
               onChange={this.props.handleChangeAvatar}/>
           </div>
+          {errors.avatar ? <div className="invalid-feedback">{errors.avatar}</div> : null}
           <div className="d-flex justify-content-center">
             <button type="button" className="btn btn-light mr-4" onClick={this.props.prevStep}>Previous</button>
-            <button type="button" className="btn btn-secondary" onClick={this.props.sentForm}>Next</button>
+            <button type="button" className="btn btn-secondary" onClick={handleNext}>Next</button>
           </div>
         </form>
         </div>
