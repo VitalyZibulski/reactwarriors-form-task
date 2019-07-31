@@ -22,7 +22,7 @@ export class ContactsForm extends Component {
               <label>Email</label>
               <input
                 type="text"
-                className="form-control"
+                className={errors.email ? 'form-control invalid' : 'form-control'}
                 placeholder="Enter email"
                 ref={node => (this.email = node)}
                 onChange = {handleChange}
@@ -35,7 +35,7 @@ export class ContactsForm extends Component {
               <label>Mobile</label>
               <input
                 type="text"
-                className="form-control"
+                className={errors.mobile ? 'form-control invalid' : 'form-control'}
                 placeholder="Enter mobile"
                 ref={node => (this.mobile = node)}
                 onChange = {handleChange}
@@ -44,7 +44,7 @@ export class ContactsForm extends Component {
               />
             </div>
             {errors.mobile ? <div className="invalid-feedback">{errors.mobile}</div> : null}
-            <div className="form-group">
+            <div>
             <label htmlFor="country">Countries</label>
             <select className="form-control" id="country"
             name="country"

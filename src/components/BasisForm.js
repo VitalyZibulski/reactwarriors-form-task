@@ -13,7 +13,7 @@ export class BasisForm extends Component {
               <label>FirstName</label>
               <input
                 type="text"
-                className="form-control"
+                className={errors.firstName ? 'form-control invalid' : 'form-control'}
                 placeholder="Enter username"
                 ref={node => (this.firstName = node)}
                 value = {firstName}
@@ -26,7 +26,7 @@ export class BasisForm extends Component {
               <label>LastName</label>
               <input
                 type="text"
-                className="form-control"
+                className={errors.lastName ? 'form-control invalid' : 'form-control'}
                 placeholder="Enter username"
                 ref={node => (this.lastName = node)}
                 value = {lastName}
@@ -39,7 +39,7 @@ export class BasisForm extends Component {
             <label>Password</label>
               <input
                 type="text"
-                className="form-control"
+                className={errors.password ? 'form-control invalid' : 'form-control'}
                 placeholder="Enter password"
                 ref={node => (this.password = node)}
                 value = {password}
@@ -53,7 +53,7 @@ export class BasisForm extends Component {
             <label>Repeat password</label>
             <input
               type="text"
-              className="form-control"
+              className={errors.repeatPassword ? 'form-control invalid' : 'form-control'}
               placeholder="Enter repeat password"
               ref={node => (this.repeatPassword = node)}
               onChange = {handleChange}
