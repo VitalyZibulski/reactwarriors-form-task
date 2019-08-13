@@ -5,11 +5,34 @@ import AvatarForm from "./AvatarForm";
 import Success from "./Success";
 import countries from '../data/countries'
 import cities from '../data/cities'
+import Steps from './Steps';
   
 export default class App extends React.Component {
 
     state = {
       step: 1,
+      steps: [
+        {
+          name: "Basic",
+          isActive: true,
+          isCompleted: false
+        },
+        {
+          name: "Contacts",
+          isActive: false,
+          isCompleted: false
+        },
+        {
+          name: "Avatar",
+          isActive: false,
+          isCompleted: false
+        },
+        {
+          name: "Finish",
+          isActive: false,
+          isCompleted: false
+        }
+      ],
       values:{
         firstName:"",
         lastName:"",
@@ -149,40 +172,43 @@ export default class App extends React.Component {
   
 
   render() {
-    const {step, errors, values} = this.state;
+    const {step, errors, values, steps} = this.state;
     
     return(
-      <React.Fragment>
-        { step === 1 && <BasisForm 
-            handleNext={this.handleNext} 
-            values={values}
-            handleChange = {this.handleChange}
-            errors = {errors}
-          />
-        }
-        { step === 2 && <ContactsForm 
-            handleNext={this.handleNext}
-            prevStep={this.prevStep}
-            values={values}
-            handleChange = {this.handleChange}
-            countries = {countries}
-            cities = {cities}
-            errors = {errors}
-          />
-        }
-        { step === 3 && <AvatarForm 
-            handleNext={this.handleNext}
-            prevStep={this.prevStep}
-            values={values}
-            handleChangeAvatar = {this.handleChangeAvatar}
-            errors = {errors}
-          />
-        }
-        { step === 4 && <Success 
-            sentForm = {this.sentForm}
-          />
-         }
-      </React.Fragment>
+        <div className="form-container card">
+        <div className="form card-body">
+          <Steps steps={steps} activeStep={step} />
+          { step === 1 && <BasisForm 
+              handleNext={this.handleNext} 
+              values={values}
+              handleChange = {this.handleChange}
+              errors = {errors}
+            />
+          }
+          { step === 2 && <ContactsForm 
+              handleNext={this.handleNext}
+              prevStep={this.prevStep}
+              values={values}
+              handleChange = {this.handleChange}
+              countries = {countries}
+              cities = {cities}
+              errors = {errors}
+            />
+          }
+          { step === 3 && <AvatarForm 
+              handleNext={this.handleNext}
+              prevStep={this.prevStep}
+              values={values}
+              handleChangeAvatar = {this.handleChangeAvatar}
+              errors = {errors}
+            />
+          }
+          { step === 4 && <Success 
+              sentForm = {this.sentForm}
+            />
+          }
+          </div>
+      </div>
     )   
   }
 }
